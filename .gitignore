@@ -1,0 +1,24 @@
+# Secrets (ممنوع يترفع)
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/build/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Neo4j بيانات محلية (لو docker-compose بيحفظها في فولدر)
+neo4j_data/
+neo4j_logs/

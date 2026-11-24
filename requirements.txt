@@ -1,0 +1,29 @@
+# Agent
+langgraph
+langchain
+langchain-core
+python-dotenv
+
+# ML
+pandas
+scikit-learn
+joblib
+
+# Vector DB
+chromadb
+sentence-transformers
+
+# Graph DB
+neo4j
+
+# API
+fastapi
+uvicorn
+
+# Testing
+pytest
+
+# LLM provider: شيلي # من اللي هتختاروه بعد ما تتفقوا
+# langchain-google-genai
+# langchain-groq
+# langchain-openai

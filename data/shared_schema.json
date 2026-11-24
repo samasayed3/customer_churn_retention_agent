@@ -1,0 +1,48 @@
+{
+  "project": "Customer Churn Retention Agent",
+  "shared_entities": {
+    "customer_segments": [
+      "New (0-12m)",
+      "Established (12-24m)",
+      "Loyal (>24m)",
+      "High-Spend"
+    ],
+    "contracts": [
+      "Month-to-month",
+      "One year",
+      "Two year"
+    ],
+    "internet_services": [
+      "Fiber optic",
+      "DSL",
+      "No"
+    ],
+    "retention_offers": [
+      "20%_Discount_6M",
+      "Free_Speed_Upgrade",
+      "Annual_Contract_Switch_Bonus",
+      "Loyalty_Router_Upgrade"
+    ]
+  },
+  "tool_response_contract": {
+    "status": "ok | error",
+    "tool": "tool_name",
+    "data": {},
+    "error": {
+      "type": "validation_error | tool_error",
+      "message": "error details",
+      "missing_fields": []
+    }
+  },
+  "agent_log_event_contract": {
+    "run_id": "string",
+    "iteration": 1,
+    "reasoning": "string",
+    "action": "call_tool | ask_user | final_answer | force_final",
+    "tool_name": "string or null",
+    "tool_input": {},
+    "tool_output": {},
+    "error": "string or null",
+    "timestamp": "ISO-8601 string"
+  }
+}
