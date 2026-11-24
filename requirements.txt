@@ -21,9 +21,10 @@ fastapi
 uvicorn
 
 # Testing
-pytest
+pytest==8.4.2
+pluggy==1.6.0
 
-# LLM provider: شيلي # من اللي هتختاروه بعد ما تتفقوا
+# LLM provider: choose one after the team agrees
 # langchain-google-genai
 # langchain-groq
 # langchain-openai
