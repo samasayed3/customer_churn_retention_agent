@@ -1,48 +1,239 @@
 {
+  "schema_version": "1.0",
   "project": "Customer Churn Retention Agent",
-  "shared_entities": {
-    "customer_segments": [
-      "New (0-12m)",
-      "Established (12-24m)",
-      "Loyal (>24m)",
-      "High-Spend"
-    ],
-    "contracts": [
-      "Month-to-month",
-      "One year",
-      "Two year"
-    ],
-    "internet_services": [
-      "Fiber optic",
-      "DSL",
-      "No"
-    ],
-    "retention_offers": [
-      "20%_Discount_6M",
-      "Free_Speed_Upgrade",
-      "Annual_Contract_Switch_Bonus",
-      "Loyalty_Router_Upgrade"
-    ]
+  "company": "TeleNova (fictional telecom company)",
+  "notes": [
+    "name is the canonical string used EVERYWHERE: ML output, policy documents, Neo4j node names, and tool parameters. Spell it exactly.",
+    "Offer values and eligibility rules here are the single source of truth. Policy documents in data/policies must state the same values.",
+    "Everything about TeleNova is fictional and defined by this file."
+  ],
+
+  "agent": {
+    "max_iterations": 5,
+    "tool_names": ["predict_churn", "search_policies", "query_retention_graph"]
   },
-  "tool_response_contract": {
-    "status": "ok | error",
-    "tool": "tool_name",
-    "data": {},
-    "error": {
-      "type": "validation_error | tool_error",
-      "message": "error details",
-      "missing_fields": []
+
+  "tool_contract": {
+    "success": {
+      "status": "ok",
+      "tool": "<tool_name>",
+      "data": {},
+      "error": null
+    },
+    "failure": {
+      "status": "error",
+      "tool": "<tool_name>",
+      "data": null,
+      "error": {
+        "type": "validation_error | not_found | connection_error | internal_error",
+        "message": "human readable message",
+        "missing_fields": []
+      }
+    },
+    "rule": "Tools never raise exceptions. They always return one of the two shapes above."
+  },
+
+  "log_event_schema": {
+    "run_id": "string",
+    "iteration": "int, 1 to 5",
+    "reasoning": "string or null (optional short reasoning)",
+    "action": "call_tool | ask_user | final_answer",
+    "tool_name": "string or null",
+    "tool_input": "object or null",
+    "tool_output": "object or null",
+    "error": "string or null",
+    "timestamp": "ISO 8601 string"
+  },
+
+  "ml_features": {
+    "required": [
+      "tenure", "Contract", "InternetService", "PaymentMethod",
+      "MonthlyCharges", "SeniorCitizen", "TechSupport", "PaperlessBilling"
+    ],
+    "fields": {
+      "gender": {"type": "category", "values": ["Female", "Male"]},
+      "SeniorCitizen": {"type": "binary", "values": [0, 1]},
+      "Partner": {"type": "category", "values": ["Yes", "No"]},
+      "Dependents": {"type": "category", "values": ["Yes", "No"]},
+      "tenure": {"type": "int", "min": 0, "max": 72, "unit": "months"},
+      "PhoneService": {"type": "category", "values": ["Yes", "No"]},
+      "MultipleLines": {"type": "category", "values": ["Yes", "No", "No phone service"]},
+      "InternetService": {"type": "category", "values": ["DSL", "Fiber optic", "No"]},
+      "OnlineSecurity": {"type": "category", "values": ["Yes", "No", "No internet service"]},
+      "OnlineBackup": {"type": "category", "values": ["Yes", "No", "No internet service"]},
+      "DeviceProtection": {"type": "category", "values": ["Yes", "No", "No internet service"]},
+      "TechSupport": {"type": "category", "values": ["Yes", "No", "No internet service"]},
+      "StreamingTV": {"type": "category", "values": ["Yes", "No", "No internet service"]},
+      "StreamingMovies": {"type": "category", "values": ["Yes", "No", "No internet service"]},
+      "Contract": {"type": "category", "values": ["Month-to-month", "One year", "Two year"]},
+      "PaperlessBilling": {"type": "category", "values": ["Yes", "No"]},
+      "PaymentMethod": {
+        "type": "category",
+        "values": ["Electronic check", "Mailed check", "Bank transfer (automatic)", "Credit card (automatic)"]
+      },
+      "MonthlyCharges": {"type": "float", "min": 0, "unit": "USD"},
+      "TotalCharges": {"type": "float", "min": 0, "unit": "USD", "note": "blank in about 11 rows of the raw Telco CSV; clean it in preprocessing"}
     }
   },
-  "agent_log_event_contract": {
-    "run_id": "string",
-    "iteration": 1,
-    "reasoning": "string",
-    "action": "call_tool | ask_user | final_answer | force_final",
-    "tool_name": "string or null",
-    "tool_input": {},
-    "tool_output": {},
-    "error": "string or null",
-    "timestamp": "ISO-8601 string"
+
+  "predict_churn_output": {
+    "churn_prediction": "Yes | No",
+    "churn_probability": "float between 0 and 1",
+    "risk_level": "Low | Medium | High",
+    "customer_profile": {
+      "contract": "one of ml_features.fields.Contract.values",
+      "internet_service": "one of ml_features.fields.InternetService.values",
+      "tenure_group": "one of tenure_groups[].name",
+      "payment_method": "one of ml_features.fields.PaymentMethod.values",
+      "monthly_charges": "float",
+      "senior_citizen": "0 or 1",
+      "has_tech_support": "Yes | No | No internet service",
+      "segments": "list of segments[].name that match this customer"
+    }
+  },
+
+  "risk_levels": [
+    {"name": "Low", "min_probability": 0.0, "max_probability": 0.3},
+    {"name": "Medium", "min_probability": 0.3, "max_probability": 0.6},
+    {"name": "High", "min_probability": 0.6, "max_probability": 1.0}
+  ],
+
+  "tenure_groups": [
+    {"name": "0-12", "min_months": 0, "max_months": 12},
+    {"name": "13-24", "min_months": 13, "max_months": 24},
+    {"name": "25-48", "min_months": 25, "max_months": 48},
+    {"name": "49-72", "min_months": 49, "max_months": 72}
+  ],
+
+  "segments": [
+    {"name": "New Customer", "rule": "tenure_group is 0-12"},
+    {"name": "Growing Customer", "rule": "tenure_group is 13-24"},
+    {"name": "Established Customer", "rule": "tenure_group is 25-48"},
+    {"name": "Loyal Customer", "rule": "tenure_group is 49-72"},
+    {"name": "High Spender", "rule": "MonthlyCharges >= 80 (can overlap with any tenure segment)"},
+    {"name": "Senior Customer", "rule": "SeniorCitizen == 1 (can overlap with any tenure segment)"}
+  ],
+
+  "contracts": ["Month-to-month", "One year", "Two year"],
+
+  "plans": [
+    {
+      "name": "Basic DSL",
+      "internet_service": "DSL",
+      "description": "Entry plan with DSL internet and phone line.",
+      "available_contracts": ["Month-to-month", "One year", "Two year"]
+    },
+    {
+      "name": "Fiber Plus",
+      "internet_service": "Fiber optic",
+      "description": "High-speed fiber internet with optional add-ons.",
+      "available_contracts": ["Month-to-month", "One year", "Two year"]
+    },
+    {
+      "name": "Premium Bundle",
+      "internet_service": "Fiber optic",
+      "description": "Fiber internet with security, backup, device protection, tech support and streaming included.",
+      "available_contracts": ["One year", "Two year"]
+    },
+    {
+      "name": "Phone Only",
+      "internet_service": "No",
+      "description": "Phone service only, no internet.",
+      "available_contracts": ["Month-to-month", "One year"]
+    }
+  ],
+
+  "eligibility_conditions": [
+    {"name": "Month-to-month Contract", "rule": "Contract == Month-to-month"},
+    {"name": "Tenure At Least 6 Months", "rule": "tenure >= 6"},
+    {"name": "Tenure At Least 49 Months", "rule": "tenure >= 49"},
+    {"name": "Manual Payment Method", "rule": "PaymentMethod is Electronic check or Mailed check"},
+    {"name": "No Tech Support Add-on", "rule": "TechSupport == No and InternetService != No"},
+    {"name": "Fiber Customer", "rule": "InternetService == Fiber optic"},
+    {"name": "Monthly Charges At Least 80", "rule": "MonthlyCharges >= 80"},
+    {"name": "Senior Citizen", "rule": "SeniorCitizen == 1"},
+    {"name": "New Customer Status", "rule": "tenure <= 12"}
+  ],
+
+  "offers": [
+    {
+      "name": "Contract Upgrade Discount",
+      "value": "15% off the monthly bill for 12 months when switching to a One year or Two year contract",
+      "applicable_plans": ["Basic DSL", "Fiber Plus", "Phone Only"],
+      "target_segments": ["New Customer", "Growing Customer", "High Spender"],
+      "requires": ["Month-to-month Contract", "Tenure At Least 6 Months"]
+    },
+    {
+      "name": "AutoPay Switch Credit",
+      "value": "One-time 10 USD bill credit after switching to automatic payment",
+      "applicable_plans": ["Basic DSL", "Fiber Plus", "Premium Bundle", "Phone Only"],
+      "target_segments": ["New Customer", "Growing Customer", "Established Customer"],
+      "requires": ["Manual Payment Method"]
+    },
+    {
+      "name": "Free Tech Support Trial",
+      "value": "3 months of Tech Support add-on at no charge",
+      "applicable_plans": ["Basic DSL", "Fiber Plus"],
+      "target_segments": ["New Customer", "Growing Customer", "Senior Customer"],
+      "requires": ["No Tech Support Add-on"]
+    },
+    {
+      "name": "Fiber Price Lock",
+      "value": "Monthly price frozen for 24 months",
+      "applicable_plans": ["Fiber Plus", "Premium Bundle"],
+      "target_segments": ["High Spender", "Established Customer"],
+      "requires": ["Fiber Customer", "Monthly Charges At Least 80"]
+    },
+    {
+      "name": "Loyalty Reward",
+      "value": "20 USD monthly bill credit for 6 months plus a free plan upgrade review",
+      "applicable_plans": ["Basic DSL", "Fiber Plus", "Premium Bundle", "Phone Only"],
+      "target_segments": ["Loyal Customer"],
+      "requires": ["Tenure At Least 49 Months"]
+    },
+    {
+      "name": "Senior Care Package",
+      "value": "Priority support line plus 10% off the monthly bill",
+      "applicable_plans": ["Basic DSL", "Fiber Plus", "Phone Only"],
+      "target_segments": ["Senior Customer"],
+      "requires": ["Senior Citizen"]
+    },
+    {
+      "name": "Welcome Bonus",
+      "value": "One free month of any streaming add-on",
+      "applicable_plans": ["Basic DSL", "Fiber Plus"],
+      "target_segments": ["New Customer"],
+      "requires": ["New Customer Status"]
+    }
+  ],
+
+  "policy_documents": [
+    {"file": "cancellation_policy.txt", "topic": "cancellation terms, early termination fees, notice period"},
+    {"file": "retention_offers.txt", "topic": "description and terms of each offer above"},
+    {"file": "service_guidelines.txt", "topic": "service quality, support levels, plan details"},
+    {"file": "contract_policy.txt", "topic": "contract types, upgrades, downgrades, renewals"},
+    {"file": "billing_and_payment_policy.txt", "topic": "payment methods, autopay, late fees, credits"}
+  ],
+
+  "graph_model": {
+    "node_labels": ["Segment", "Plan", "Offer", "EligibilityCondition", "Contract"],
+    "relationships": [
+      "(Offer)-[:TARGETS]->(Segment)",
+      "(Offer)-[:APPLIES_TO]->(Plan)",
+      "(Offer)-[:REQUIRES]->(EligibilityCondition)",
+      "(Plan)-[:AVAILABLE_WITH]->(Contract)"
+    ],
+    "unique_key": "name"
+  },
+
+  "graph_query_types": {
+    "offers_for_segment": {"params": ["segment"], "returns": "offers targeting that segment"},
+    "offers_for_plan": {"params": ["plan"], "returns": "offers applicable to that plan"},
+    "eligibility_for_offer": {"params": ["offer"], "returns": "eligibility conditions required by that offer"},
+    "plans_by_contract": {"params": ["contract"], "returns": "plans available with that contract"},
+    "offers_for_profile": {
+      "params": ["segments", "plan"],
+      "returns": "offers matching any of the given segments for the given plan, with their eligibility conditions"
+    }
   }
 }
