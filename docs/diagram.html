@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Churn Retention Agent - Diagrams</title>
+<style>
+  body{font-family:system-ui,Segoe UI,Arial,sans-serif;margin:0;padding:24px;background:#fff;color:#1a1a1a}
+  h1{font-size:20px} h2{font-size:16px;margin-top:32px}
+  .box{overflow-x:auto;border:1px solid #ddd;border-radius:8px;padding:12px}
+  @media (prefers-color-scheme: dark){body{background:#1b1b1b;color:#eee} .box{border-color:#444;background:#fff}}
+</style></head><body>
+<h1>Customer Churn Retention Agent</h1>
+<h2>1) Architecture: LangGraph workflow + tools</h2>
+<div class="box"><pre class="mermaid">
+flowchart TD
+    U(["👤 User<br/>chat + Live Trace (frontend)"]) -->|question| API["api/server.py<br/>streams trace events"]
+    API -->|"START"| LLM
+
+    subgraph AGENT["LangGraph Agent  (max 5 iterations)"]
+        LLM["🧠 LLM Node<br/>decides next step<br/>iteration += 1"] --> R{{"route_after_llm<br/>(conditional edges)"}}
+        R -->|"① call_tool<br/>iteration < 5"| TOOLS["🔧 Tool Node<br/>runs the chosen tool"]
+        TOOLS -->|"result → tool_results"| LLM
+        R -->|"② ask_user<br/>data is missing"| ASK["❓ ask_user<br/>ask, do not guess"]
+        R -->|"② final_answer"| GEN["📝 Generation Node<br/>final reply"]
+        R -->|"③ force_final<br/>5 iterations used"| FF["⚠️ force_final<br/>LLM answers WITHOUT tools:<br/>what was found / what is unresolved"]
+        FF --> GEN
+    end
+
+    ASK -->|"END"| API
+    GEN -->|"END"| API
+    AGENT -.->|"log"| LOG[("logs/*.jsonl<br/>run_id · iteration · reasoning · action<br/>tool_name · tool_input · tool_output<br/>error · timestamp")]
+    LOG -.-> API
+
+    TOOLS --> T1["predict_churn<br/>(features: dict)"]
+    TOOLS --> T2["search_policies<br/>(query, top_k=3)"]
+    TOOLS --> T3["query_retention_graph<br/>(query_type, params)"]
+
+    T1 --> M[("ML model<br/>model.joblib")]
+    T2 --> C[("ChromaDB<br/>policy chunks + metadata")]
+    T3 --> N[("Neo4j<br/>Segments · Plans · Offers<br/>Eligibility · Contracts")]
+
+    SCHEMA["data/shared_schema.json<br/>single source of truth for names + tool contract"] -.-> T1
+    SCHEMA -.-> T2
+    SCHEMA -.-> T3
+
+</pre></div>
+<h2>2) Neo4j graph model</h2>
+<div class="box"><pre class="mermaid">
+flowchart LR
+    O(["Offer<br/>name, value"])
+    S(["Segment<br/>name, rule"])
+    P(["Plan<br/>name, internet_service, description"])
+    E(["EligibilityCondition<br/>name, rule"])
+    C(["Contract<br/>name"])
+    O -->|TARGETS| S
+    O -->|APPLIES_TO| P
+    O -->|REQUIRES| E
+    P -->|AVAILABLE_WITH| C
+
+</pre></div>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,securityLevel:"loose",theme:"default"});</script>
+</body></html>

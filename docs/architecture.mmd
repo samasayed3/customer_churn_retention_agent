@@ -1,0 +1,30 @@
+flowchart TD
+    U(["👤 User<br/>chat + Live Trace (frontend)"]) -->|question| API["api/server.py<br/>streams trace events"]
+    API -->|"START"| LLM
+
+    subgraph AGENT["LangGraph Agent  (max 5 iterations)"]
+        LLM["🧠 LLM Node<br/>decides next step<br/>iteration += 1"] --> R{{"route_after_llm<br/>(conditional edges)"}}
+        R -->|"① call_tool<br/>iteration < 5"| TOOLS["🔧 Tool Node<br/>runs the chosen tool"]
+        TOOLS -->|"result → tool_results"| LLM
+        R -->|"② ask_user<br/>data is missing"| ASK["❓ ask_user<br/>ask, do not guess"]
+        R -->|"② final_answer"| GEN["📝 Generation Node<br/>final reply"]
+        R -->|"③ force_final<br/>5 iterations used"| FF["⚠️ force_final<br/>LLM answers WITHOUT tools:<br/>what was found / what is unresolved"]
+        FF --> GEN
+    end
+
+    ASK -->|"END"| API
+    GEN -->|"END"| API
+    AGENT -.->|"log"| LOG[("logs/*.jsonl<br/>run_id · iteration · reasoning · action<br/>tool_name · tool_input · tool_output<br/>error · timestamp")]
+    LOG -.-> API
+
+    TOOLS --> T1["predict_churn<br/>(features: dict)"]
+    TOOLS --> T2["search_policies<br/>(query, top_k=3)"]
+    TOOLS --> T3["query_retention_graph<br/>(query_type, params)"]
+
+    T1 --> M[("ML model<br/>model.joblib")]
+    T2 --> C[("ChromaDB<br/>policy chunks + metadata")]
+    T3 --> N[("Neo4j<br/>Segments · Plans · Offers<br/>Eligibility · Contracts")]
+
+    SCHEMA["data/shared_schema.json<br/>single source of truth for names + tool contract"] -.-> T1
+    SCHEMA -.-> T2
+    SCHEMA -.-> T3
