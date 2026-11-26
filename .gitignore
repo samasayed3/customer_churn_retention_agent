@@ -22,3 +22,5 @@ Thumbs.db
 # Neo4j بيانات محلية (لو docker-compose بيحفظها في فولدر)
 neo4j_data/
 neo4j_logs/
+
+.venv*/

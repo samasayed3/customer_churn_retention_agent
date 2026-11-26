@@ -1,0 +1,24 @@
+# Neo4j for the retention graph.   Start:  docker compose up -d     Stop:  docker compose down
+# Browser UI: http://localhost:7474   (login = NEO4J_USER / NEO4J_PASSWORD from your .env)
+# Then build the graph:  python -m graph_db.build_graph
+services:
+  neo4j:
+    image: neo4j:5.26-community
+    container_name: churn-neo4j
+    restart: unless-stopped
+    ports:
+      - "7474:7474"   # browser
+      - "7687:7687"   # bolt (used by the Python driver)
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env}
+    volumes:
+      - neo4j_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u $${NEO4J_USER:-neo4j} -p $${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set} 'RETURN 1' || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 12
+      start_period: 20s
+
+volumes:
+  neo4j_data:

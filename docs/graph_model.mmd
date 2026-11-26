@@ -1,0 +1,10 @@
+flowchart LR
+    O(["Offer<br/>name, value"])
+    S(["Segment<br/>name, rule"])
+    P(["Plan<br/>name, internet_service, description"])
+    E(["EligibilityCondition<br/>name, rule"])
+    C(["Contract<br/>name"])
+    O -->|TARGETS| S
+    O -->|APPLIES_TO| P
+    O -->|REQUIRES| E
+    P -->|AVAILABLE_WITH| C
