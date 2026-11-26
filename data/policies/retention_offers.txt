@@ -1,0 +1,51 @@
+TeleNova Retention Offers
+
+Retention Offers Overview
+TeleNova has seven retention offers: Contract Upgrade Discount, AutoPay Switch Credit, Free Tech Support Trial, Fiber Price Lock, Loyalty Reward, Senior Care Package, and Welcome Bonus. Each TeleNova retention offer has a value, a list of applicable plans, a list of target segments, and eligibility conditions that the customer must meet.
+
+Contract Upgrade Discount Value and Eligibility
+The Contract Upgrade Discount gives 15% off the monthly bill for 12 months when the customer switches to a One year or Two year contract. The Contract Upgrade Discount requires a Month-to-month Contract and Tenure At Least 6 Months. The Contract Upgrade Discount is applicable to the Basic DSL, Fiber Plus, and Phone Only plans. It targets the New Customer, Growing Customer, and High Spender segments.
+
+Contract Upgrade Discount Notes
+The Contract Upgrade Discount requires Tenure At Least 6 Months, so a New Customer with a tenure under 6 months does not meet the conditions. The Premium Bundle is not in the list of applicable plans of the Contract Upgrade Discount. When a customer accepts the Contract Upgrade Discount, the early termination fee of the new contract applies.
+
+AutoPay Switch Credit Value and Eligibility
+The AutoPay Switch Credit gives a one-time 10 USD bill credit after the customer switches to automatic payment. The AutoPay Switch Credit requires a Manual Payment Method, which means the customer pays by Electronic check or Mailed check. The AutoPay Switch Credit is applicable to all four plans: Basic DSL, Fiber Plus, Premium Bundle, and Phone Only. It targets the New Customer, Growing Customer, and Established Customer segments.
+
+Free Tech Support Trial Value and Eligibility
+The Free Tech Support Trial gives 3 months of the Tech Support add-on at no charge. The Free Tech Support Trial requires the No Tech Support Add-on condition, which means TechSupport is No and the customer has an internet service. The Free Tech Support Trial is applicable to the Basic DSL and Fiber Plus plans. It targets the New Customer, Growing Customer, and Senior Customer segments. The Premium Bundle includes tech support and is not in the list of applicable plans.
+
+Fiber Price Lock Value and Eligibility
+The Fiber Price Lock freezes the monthly price for 24 months. The Fiber Price Lock requires the Fiber Customer condition and the Monthly Charges At Least 80 condition. A Fiber Customer is a customer with Fiber optic internet service. The Fiber Price Lock is applicable to the Fiber Plus and Premium Bundle plans. It targets the High Spender and Established Customer segments.
+
+Loyalty Reward Value and Eligibility
+The Loyalty Reward gives a 20 USD monthly bill credit for 6 months plus a free plan upgrade review. The Loyalty Reward requires Tenure At Least 49 Months. The Loyalty Reward is applicable to all four plans: Basic DSL, Fiber Plus, Premium Bundle, and Phone Only. It targets the Loyal Customer segment only.
+
+Senior Care Package Value and Eligibility
+The Senior Care Package gives a priority support line plus 10% off the monthly bill. The Senior Care Package requires the Senior Citizen condition, which means SeniorCitizen equals 1. The Senior Care Package is applicable to the Basic DSL, Fiber Plus, and Phone Only plans. It targets the Senior Customer segment.
+
+Welcome Bonus Value and Eligibility
+The Welcome Bonus gives one free month of any streaming add-on. The Welcome Bonus requires the New Customer Status condition, which means the tenure is 12 months or less. The Welcome Bonus is applicable to the Basic DSL and Fiber Plus plans. It targets the New Customer segment only.
+
+Offers by Customer Segment
+The New Customer segment is targeted by the Contract Upgrade Discount, AutoPay Switch Credit, Free Tech Support Trial, and Welcome Bonus. The Growing Customer segment is targeted by the Contract Upgrade Discount, AutoPay Switch Credit, and Free Tech Support Trial. The Established Customer segment is targeted by the AutoPay Switch Credit and Fiber Price Lock. The Loyal Customer segment is targeted by the Loyalty Reward. The High Spender segment is targeted by the Contract Upgrade Discount and Fiber Price Lock. The Senior Customer segment is targeted by the Free Tech Support Trial and Senior Care Package.
+
+Offers by Plan
+The Basic DSL plan is covered by the Contract Upgrade Discount, AutoPay Switch Credit, Free Tech Support Trial, Loyalty Reward, Senior Care Package, and Welcome Bonus. The Fiber Plus plan is covered by all seven offers. The Premium Bundle plan is covered by the AutoPay Switch Credit, Fiber Price Lock, and Loyalty Reward. The Phone Only plan is covered by the Contract Upgrade Discount, AutoPay Switch Credit, Loyalty Reward, and Senior Care Package.
+
+Churn Risk and Retention Outreach
+TeleNova predicts a churn probability for each customer. A probability below 0.3 is Low risk, from 0.3 to 0.6 is Medium risk, and 0.6 or higher is High risk. TeleNova contacts High risk customers first.
+
+General Rules for Retention Offers
+TeleNova support agents check every eligibility condition before presenting a retention offer. Agents never promise an offer to a customer who does not meet the conditions. A customer who cancels the service loses all active retention offers. Bill credits have no cash value.
+
+Frequently Asked Questions About Retention Offers
+
+Question: Which TeleNova offer is for customers with a Month-to-month contract?
+Answer: The Contract Upgrade Discount, which gives 15% off for 12 months when the customer switches to a One year or Two year contract.
+
+Question: Which TeleNova offer is for long-term customers?
+Answer: The Loyalty Reward, for customers with a tenure of at least 49 months.
+
+Question: Which offer is for customers who pay by Electronic check or Mailed check?
+Answer: The AutoPay Switch Credit, a one-time 10 USD bill credit for switching to automatic payment.
