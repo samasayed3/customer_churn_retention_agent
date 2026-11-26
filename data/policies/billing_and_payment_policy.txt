@@ -1,0 +1,51 @@
+TeleNova Billing and Payment Policy
+
+Billing Overview
+TeleNova bills customers every month. The TeleNova bill includes the plan price, any add-on services, and any bill credits. Customers receive the bill by email if Paperless Billing is on.
+
+Payment Methods
+TeleNova accepts four payment methods: Electronic check, Mailed check, Bank transfer (automatic), and Credit card (automatic). Electronic check and Mailed check are manual payment methods. Bank transfer (automatic) and Credit card (automatic) are automatic payment methods.
+
+Manual Payment Method Condition
+The Manual Payment Method condition is true when the customer pays by Electronic check or Mailed check. A customer who uses a manual payment method must start each payment by hand every month. The AutoPay Switch Credit is the retention offer that requires the Manual Payment Method condition.
+
+Automatic Payment Methods
+A customer who pays by Bank transfer (automatic) or Credit card (automatic) has the bill paid automatically on the due date. Automatic payment reduces missed payments and late fees.
+
+AutoPay Switch Credit
+The AutoPay Switch Credit gives a one-time 10 USD bill credit after the customer switches to automatic payment. The AutoPay Switch Credit requires a Manual Payment Method. The AutoPay Switch Credit is applicable to all four plans: Basic DSL, Fiber Plus, Premium Bundle, and Phone Only. It targets the New Customer, Growing Customer, and Established Customer segments. TeleNova applies the AutoPay Switch Credit to the first bill after the automatic payment starts.
+
+How to Switch to Automatic Payment
+A customer switches to automatic payment by choosing Bank transfer (automatic) or Credit card (automatic) in the TeleNova app, by phone, or in a TeleNova store. The change applies from the next billing cycle.
+
+Paperless Billing
+The TeleNova customer profile stores Paperless Billing as Yes or No. Paperless Billing sends the monthly bill by email. A customer can turn Paperless Billing on or off at any time. Paperless Billing is one of the required inputs of the churn prediction model.
+
+Monthly Charges and Total Charges
+TeleNova records the monthly charges of each customer in USD and the total charges paid in USD. A customer with monthly charges of 80 USD or more belongs to the High Spender segment and meets the Monthly Charges At Least 80 condition. The Fiber Price Lock requires the Monthly Charges At Least 80 condition.
+
+Due Date and Late Fees
+The TeleNova bill is due 15 days after the bill date. If the customer does not pay within 10 days after the due date, TeleNova charges a late fee of 8 USD. TeleNova sends a reminder before the late fee is charged.
+
+How Bill Credits Are Applied
+TeleNova applies bill credits to the next monthly bill. The Loyalty Reward gives a 20 USD monthly bill credit for 6 months. The Contract Upgrade Discount gives 15% off the monthly bill for 12 months. The Senior Care Package gives 10% off the monthly bill. The Fiber Price Lock freezes the monthly price for 24 months and does not change the bill amount. Bill credits have no cash value, and unused credits are lost when the customer cancels.
+
+Eligibility for Bill-Related Offers
+The Contract Upgrade Discount requires a Month-to-month Contract and Tenure At Least 6 Months. The Senior Care Package requires the Senior Citizen condition. The Loyalty Reward requires Tenure At Least 49 Months. The Fiber Price Lock requires the Fiber Customer condition and the Monthly Charges At Least 80 condition.
+
+Billing Disputes
+A customer who thinks a charge is wrong can open a billing dispute within 60 days of the bill date. TeleNova reviews the dispute and replies within 10 days. A billing dispute for an amount over 100 USD goes to the TeleNova billing team. While a dispute is open, TeleNova does not charge a late fee on the disputed amount.
+
+Frequently Asked Questions About Billing
+
+Question: What payment methods does TeleNova accept?
+Answer: Electronic check, Mailed check, Bank transfer (automatic), and Credit card (automatic).
+
+Question: How much is the AutoPay Switch Credit?
+Answer: A one-time bill credit of 10 USD after the customer switches to automatic payment.
+
+Question: When is a late fee charged?
+Answer: TeleNova charges a late fee of 8 USD if the customer does not pay within 10 days after the due date.
+
+Question: Can a customer get cash for unused credits?
+Answer: No. Bill credits have no cash value.

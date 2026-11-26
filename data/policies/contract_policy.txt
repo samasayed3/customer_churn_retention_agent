@@ -1,0 +1,51 @@
+TeleNova Contract Policy
+
+Contract Types Overview
+TeleNova offers three contract types: Month-to-month, One year, and Two year. Every TeleNova customer has one contract. The contract type decides the early termination fee, the plans the customer can choose, and the retention offers the customer can receive.
+
+Month-to-month Contract
+The Month-to-month contract has no long-term commitment. A customer with a Month-to-month contract can cancel at any time with 30 days notice and pays no early termination fee. The Month-to-month contract is available with the Basic DSL, Fiber Plus, and Phone Only plans. The Month-to-month contract is not available with the Premium Bundle.
+
+One Year Contract
+The One year contract has a one-year term. A customer who cancels a One year contract early pays an early termination fee of 100 USD. The One year contract is available with all four plans: Basic DSL, Fiber Plus, Premium Bundle, and Phone Only.
+
+Two Year Contract
+The Two year contract has a two-year term. A customer who cancels a Two year contract early pays an early termination fee of 200 USD. The Two year contract is available with the Basic DSL, Fiber Plus, and Premium Bundle plans. The Two year contract is not available with the Phone Only plan.
+
+Plans Available by Contract
+The Basic DSL plan and the Fiber Plus plan are available with Month-to-month, One year, and Two year contracts. The Premium Bundle plan is available with One year and Two year contracts only. The Phone Only plan is available with Month-to-month and One year contracts only.
+
+Upgrading a Contract
+A TeleNova customer with a Month-to-month contract can switch to a One year or Two year contract. A customer who switches may receive the Contract Upgrade Discount, which gives 15% off the monthly bill for 12 months. The Contract Upgrade Discount requires a Month-to-month Contract and Tenure At Least 6 Months. The Contract Upgrade Discount is applicable to the Basic DSL, Fiber Plus, and Phone Only plans, and targets the New Customer, Growing Customer, and High Spender segments.
+
+Contract Upgrade Restrictions
+A customer on the Phone Only plan can switch to a One year contract but not to a Two year contract, because the Phone Only plan is not available with the Two year contract. A customer who wants the Premium Bundle must choose a One year or Two year contract, because the Premium Bundle is not available with the Month-to-month contract.
+
+Downgrading a Contract
+A TeleNova customer can choose a shorter contract only at renewal. A customer cannot move to a shorter contract before the contract end date.
+
+Contract Renewals
+TeleNova sends a renewal reminder 30 days before a One year or Two year contract ends. If the customer does not choose a new contract, the customer moves to a Month-to-month contract on the same plan. A Premium Bundle customer must choose a One year or Two year contract at renewal, because the Premium Bundle is not available with the Month-to-month contract.
+
+Changing Plans and Contracts
+The new plan price applies from the next billing cycle. Changing the plan does not change the contract end date. A customer who moves to a plan that is not available with the current contract type must also change the contract. For example, a Month-to-month customer who wants the Premium Bundle must choose a One year or Two year contract.
+
+Contract Type in the Customer Profile
+The TeleNova customer profile stores the contract as one of three values: Month-to-month, One year, or Two year. The churn prediction model uses the contract as one of its required inputs. The Month-to-month Contract condition is true when the contract is Month-to-month.
+
+Contracts and Retention Offers
+The Contract Upgrade Discount is the retention offer linked to the contract type. It is the only TeleNova offer that requires the Month-to-month Contract condition. When a customer accepts the Contract Upgrade Discount, the early termination fee of the new contract applies.
+
+Frequently Asked Questions About Contracts
+
+Question: Which TeleNova plans are available with a Month-to-month contract?
+Answer: Basic DSL, Fiber Plus, and Phone Only. The Premium Bundle is not available with the Month-to-month contract.
+
+Question: Is the Two year contract available on the Phone Only plan?
+Answer: No. The Phone Only plan is available with Month-to-month and One year contracts only.
+
+Question: What happens when a One year contract ends?
+Answer: If the customer does not choose a new contract, the customer moves to a Month-to-month contract on the same plan.
+
+Question: Can a customer switch to a shorter contract during the term?
+Answer: No. A customer can choose a shorter contract only at renewal.

@@ -1,0 +1,57 @@
+TeleNova Service Guidelines
+
+Service Guidelines Overview
+This document describes the TeleNova plans, add-on services, customer segments, churn risk levels, and eligibility conditions. TeleNova has four plans: Basic DSL, Fiber Plus, Premium Bundle, and Phone Only.
+
+Basic DSL Plan
+The Basic DSL plan is the TeleNova entry plan. The Basic DSL plan includes DSL internet and a phone line. The Basic DSL plan is available with Month-to-month, One year, and Two year contracts.
+
+Fiber Plus Plan
+The Fiber Plus plan includes high-speed Fiber optic internet with optional add-ons. The Fiber Plus plan is available with Month-to-month, One year, and Two year contracts. A Fiber Plus customer is a Fiber Customer.
+
+Premium Bundle Plan
+The Premium Bundle plan includes Fiber optic internet with security, backup, device protection, tech support, and streaming included. The Premium Bundle is available with One year and Two year contracts only. A Premium Bundle customer is a Fiber Customer.
+
+Phone Only Plan
+The Phone Only plan includes phone service only and has no internet. The Phone Only plan is available with Month-to-month and One year contracts only.
+
+Internet Service Types
+The TeleNova customer profile stores the internet service as DSL, Fiber optic, or No. The Basic DSL plan uses DSL. The Fiber Plus and Premium Bundle plans use Fiber optic. The Phone Only plan has no internet service. Fiber optic internet is faster and more reliable than DSL.
+
+Add-on Services
+TeleNova tracks six add-on services. Online Security protects the customer from viruses and unsafe websites. Online Backup stores copies of customer files. Device Protection covers repair or replacement of damaged devices. Tech Support helps the customer with internet and device problems. Streaming TV and Streaming Movies give access to TeleNova streaming content. For each add-on the customer profile stores Yes, No, or No internet service. The Premium Bundle includes all of these services.
+
+Phone Service
+The TeleNova customer profile stores Phone Service as Yes or No. It also stores Multiple Lines as Yes, No, or No phone service.
+
+Customer Segments
+TeleNova groups customers into six segments. A New Customer has a tenure of 0 to 12 months. A Growing Customer has a tenure of 13 to 24 months. An Established Customer has a tenure of 25 to 48 months. A Loyal Customer has a tenure of 49 to 72 months. A High Spender has monthly charges of 80 USD or more. A Senior Customer is a customer with SeniorCitizen equal to 1. The High Spender and Senior Customer segments can overlap with any tenure segment, so one customer can belong to several segments.
+
+Churn Risk Levels
+TeleNova assigns each customer a churn risk level from the predicted churn probability. Low risk means a probability from 0 to 0.3. Medium risk means a probability from 0.3 to 0.6. High risk means a probability from 0.6 to 1.0. The risk level is not a segment. It shows how likely the customer is to leave.
+
+Eligibility Conditions
+TeleNova uses nine eligibility conditions for retention offers. Month-to-month Contract means the contract is Month-to-month. Tenure At Least 6 Months means the tenure is 6 months or more. Tenure At Least 49 Months means the tenure is 49 months or more. Manual Payment Method means the customer pays by Electronic check or Mailed check. No Tech Support Add-on means the customer has no Tech Support and has an internet service. Fiber Customer means the customer has Fiber optic internet. Monthly Charges At Least 80 means the monthly charges are 80 USD or more. Senior Citizen means SeniorCitizen equals 1. New Customer Status means the tenure is 12 months or less.
+
+Standard Support
+TeleNova Standard Support is available by phone and in TeleNova stores from 8 am to 8 pm every day. Standard Support handles billing questions, plan changes, and general service questions.
+
+Priority Support for Senior Customers
+The Senior Care Package includes a priority support line. The Senior Care Package requires the Senior Citizen condition and is applicable to the Basic DSL, Fiber Plus, and Phone Only plans.
+
+Service Quality Commitments
+TeleNova aims to restore a reported internet outage within 48 hours. If a Fiber optic customer reports repeated outages, TeleNova schedules a technician visit. This document does not define the price of each plan.
+
+Frequently Asked Questions About Service
+
+Question: Which TeleNova plan includes tech support?
+Answer: The Premium Bundle includes tech support. Customers on other plans can receive the Free Tech Support Trial if they meet its conditions and are on Basic DSL or Fiber Plus.
+
+Question: Which plan has no internet?
+Answer: The Phone Only plan.
+
+Question: What does the Premium Bundle include?
+Answer: Fiber optic internet with security, backup, device protection, tech support, and streaming.
+
+Question: What is a High Spender?
+Answer: A customer with monthly charges of 80 USD or more.
